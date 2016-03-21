@@ -7,7 +7,8 @@ suite('test project', function() {
 		this.stringCalculator = new StringCalculator();
 	});
 
-	test('test runs', function() {
+	test('add method', function() {
+		assert.equal(this.stringCalculator.add(''), 0, 'return 0 for empty string')
 	});
 
 	teardown(function() {
