@@ -12,7 +12,7 @@ StringCalculator.prototype.add = function(numbers) {
 	if (numbers === '') {
 		return sum;
 	}
-	numbers.split(',').forEach(function(number) {
+	numbers.split(/,|\n/).forEach(function(number) {
 		sum += parseInt(number, 10);
 	});
 	return sum;

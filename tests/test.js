@@ -21,6 +21,10 @@ suite('test project', function() {
 		}, this);
 	});
 
+	test('test new line separator', function() {
+		assert.equal(this.stringCalculator.add('1\n2,3'), 6, 'not equal');
+	});
+
 	teardown(function() {
 	});
 });
