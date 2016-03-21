@@ -7,8 +7,16 @@ suite('test project', function() {
 		this.stringCalculator = new StringCalculator();
 	});
 
-	test('add method', function() {
-		assert.equal(this.stringCalculator.add(''), 0, 'return 0 for empty string')
+	test('test add method with empty string', function() {
+		assert.equal(this.stringCalculator.add(''), 0, 'empty string should result 0');
+	});
+
+	test('test addition with one number', function() {
+		assert.equal(this.stringCalculator.add('1'), 1, 'result should be 1');
+	});
+
+	test('test addition with two numbers', function() {
+		assert.equal(this.stringCalculator.add('1,2'), 3, 'result should be 3');
 	});
 
 	teardown(function() {
