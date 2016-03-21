@@ -50,6 +50,11 @@ suite('test project', function() {
 		assert.throws(this.stringCalculator.add.bind(this, '-30,10'), 'negatives not allowed', 'function does not throw');
 	});
 
+	test('values over 1000 ignored', function() {
+		assert.equal(this.stringCalculator.add('1000,2'), 1002, 'value was greater than 1000');
+		assert.equal(this.stringCalculator.add('1001,2'), 2, 'value was greater than 1000');
+	});
+
 	teardown(function() {
 	});
 });

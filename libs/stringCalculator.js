@@ -23,7 +23,9 @@ StringCalculator.prototype.add = function(numbers) {
 		if (add < 0) {
 			throw new Error('negatives not allowed');
 		}
-		sum += add;
+		if (add <= 1000) {
+			sum += add;
+		}
 	});
 	return sum;
 };
