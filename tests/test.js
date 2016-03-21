@@ -13,6 +13,13 @@ suite('test project', function() {
 			'0,1,2,3,4,5'   : 15,
 			'21,12,30,43,5' : 111
 		};
+		this._dataProvider2 = {
+			''                  : 0,
+			'1'                 : 1,
+			'0,1\n2'            : 3,
+			'0,1,2\n3,4,5'      : 15,
+			'21\n12\n30\n43\n5' : 111
+		};
 	});
 
 	test('test multiple additions', function() {
@@ -22,7 +29,9 @@ suite('test project', function() {
 	});
 
 	test('test new line separator', function() {
-		assert.equal(this.stringCalculator.add('1\n2,3'), 6, 'not equal');
+		_.each(this._dataProvider2, function(testResult, testValue) {
+			assert.equal(this.stringCalculator.add(testValue), testResult, 'not equal');
+		}, this);
 	});
 
 	teardown(function() {
