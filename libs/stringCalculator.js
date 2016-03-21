@@ -5,6 +5,8 @@
  */
 var StringCalculator = function() {
 	this._defaultDelimiter = new RegExp(/,|\n/);
+	this._delimiterTest = new RegExp(/^\D\n|^\[\D+\]\n/);
+	this._delimiterParser = new RegExp(/^(\D)\n|^\[(\D+)\]\n/);
 	this._delimiter = this._defaultDelimiter;
 };
 
@@ -29,8 +31,8 @@ StringCalculator.prototype.add = function(numbers) {
 };
 
 StringCalculator.prototype._parseDelimiter = function(numbers) {
-	if (/^\D\n|^\[\D+\]\n/.test(numbers)) {
-		this._delimiter = numbers.match(/^(\D)\n|^\[(\D+)\]\n/);
+	if (this._delimiterTest.test(numbers)) {
+		this._delimiter = numbers.match(this._delimiterParser);
 		this._delimiter = this._delimiter[1] || this._delimiter[2];
 		numbers = numbers.substr(numbers.indexOf('\n'));
 	}
