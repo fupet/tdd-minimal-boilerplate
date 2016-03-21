@@ -4,12 +4,12 @@
  * @constructor
  */
 var StringCalculator = function() {
-
+	this._defaultDelimiter = new RegExp(/,|\n/);
 };
 
 StringCalculator.prototype.add = function(numbers) {
 	var sum = 0,
-		delimiter = new RegExp(/,|\n/);
+		delimiter = this._defaultDelimiter;
 	if (numbers === '') {
 		return sum;
 	}

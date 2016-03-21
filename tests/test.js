@@ -20,6 +20,11 @@ suite('test project', function() {
 			'0,1,2\n3,4,5'      : 15,
 			'21\n12\n30\n43\n5' : 111
 		};
+		this._dataProvider3 = {
+			';\n1;2'     : 3,
+			'*\n2*4*5'   : 11,
+			'@\n12@4@15' : 31
+		};
 	});
 
 	test('test multiple additions', function() {
@@ -35,7 +40,9 @@ suite('test project', function() {
 	});
 
 	test('test custom separator', function() {
-		assert.equal(this.stringCalculator.add(';\n1;2'), 3, 'not equal');
+		_.each(this._dataProvider3, function(testResult, testValue) {
+			assert.equal(this.stringCalculator.add(testValue), testResult, 'not equal');
+		}, this);
 	});
 
 	teardown(function() {
