@@ -1,18 +1,13 @@
 var assert = require('chai').assert,
 	sinon = require('sinon'),
-	TestClass = require('../libs/test');
+	StringCalculator = require('../libs/stringCalculator');
 
 suite('test project', function() {
 	setup(function() {
-		this.sandbox = sinon.sandbox.create();
-		this.clock = this.sandbox.useFakeTimers();
-		this.testClass = new TestClass();
+		this.stringCalculator = new StringCalculator();
 	});
 
 	test('test runs', function() {
-		this.testClass.test();
-		this.clock.tick(1000);
-		assert.strictEqual(this.testClass.a, 1);
 	});
 
 	teardown(function() {
