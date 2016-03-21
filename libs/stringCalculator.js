@@ -17,8 +17,13 @@ StringCalculator.prototype.add = function(numbers) {
 		delimiter = numbers.match(/^(\D)\n/)[1];
 		numbers = numbers.substr(numbers.indexOf('\n'));
 	}
+
 	numbers.split(delimiter).forEach(function(number) {
-		sum += parseInt(number, 10);
+		var add = parseInt(number, 10);
+		if (add < 0) {
+			throw new Error('negatives not allowed');
+		}
+		sum += add;
 	});
 	return sum;
 };

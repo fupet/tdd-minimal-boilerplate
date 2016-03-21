@@ -45,6 +45,11 @@ suite('test project', function() {
 		}, this);
 	});
 
+	test('test negative number', function() {
+		assert.doesNotThrow(this.stringCalculator.add.bind(this, '30,10'), 'negatives not allowed', 'function throws');
+		assert.throws(this.stringCalculator.add.bind(this, '-30,10'), 'negatives not allowed', 'function does not throw');
+	});
+
 	teardown(function() {
 	});
 });
