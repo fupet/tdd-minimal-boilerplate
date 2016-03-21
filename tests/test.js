@@ -34,6 +34,10 @@ suite('test project', function() {
 		}, this);
 	});
 
+	test('test custom separator', function() {
+		assert.equal(this.stringCalculator.add(';\n1;2'), 3, 'not equal');
+	});
+
 	teardown(function() {
 	});
 });
