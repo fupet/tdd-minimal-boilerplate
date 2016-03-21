@@ -25,6 +25,11 @@ suite('test project', function() {
 			'*\n2*4*5'   : 11,
 			'@\n12@4@15' : 31
 		};
+		this._dataProvider4 = {
+			'[***]\n1***2***3'         : 6,
+			'[@a%]\n1@a%2@a%3'         : 6,
+			'[@#$%^]\n12@#$%^4@#$%^15' : 31
+		};
 	});
 
 	test('test multiple additions', function() {
@@ -46,13 +51,19 @@ suite('test project', function() {
 	});
 
 	test('test negative number', function() {
-		assert.doesNotThrow(this.stringCalculator.add.bind(this, '30,10'), 'negatives not allowed', 'function throws');
-		assert.throws(this.stringCalculator.add.bind(this, '-30,10'), 'negatives not allowed', 'function does not throw');
+		assert.doesNotThrow(this.stringCalculator.add.bind(this.stringCalculator, '30,10'), 'negatives not allowed', 'function throws');
+		assert.throws(this.stringCalculator.add.bind(this.stringCalculator, '-30,10'), 'negatives not allowed', 'function does not throw');
 	});
 
 	test('values over 1000 ignored', function() {
 		assert.equal(this.stringCalculator.add('1000,2'), 1002, 'value was greater than 1000');
 		assert.equal(this.stringCalculator.add('1001,2'), 2, 'value was greater than 1000');
+	});
+
+	test('test any length delimiters', function() {
+		_.each(this._dataProvider4, function(testResult, testValue) {
+			assert.equal(this.stringCalculator.add(testValue), testResult, 'not equal');
+		}, this);
 	});
 
 	teardown(function() {
