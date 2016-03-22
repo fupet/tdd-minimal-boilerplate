@@ -66,6 +66,10 @@ suite('test project', function() {
 		}, this);
 	});
 
+	test('test multiple custom delimiters', function() {
+		assert.equal(this.stringCalculator.add('[*][%]\n1*2%3'), 6, 'not equal');
+	});
+
 	teardown(function() {
 	});
 });
