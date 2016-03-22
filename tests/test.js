@@ -30,6 +30,11 @@ suite('test project', function() {
 			'[@a%]\n1@a%2@a%3'         : 6,
 			'[@#$%^]\n12@#$%^4@#$%^15' : 31
 		};
+		this._dataProvider5 = {
+			'[***][@a%]\n1***2***3@a%9'     : 15,
+			'[@a%][&*)]\n1@a%2&*)3&*)2'     : 8,
+			'[@#$%^][@]\n12@#$%^4@#$%^15@2' : 33
+		};
 	});
 
 	test('test multiple additions', function() {
@@ -67,7 +72,9 @@ suite('test project', function() {
 	});
 
 	test('test multiple custom delimiters', function() {
-		assert.equal(this.stringCalculator.add('[*][%]\n1*2%3'), 6, 'not equal');
+		_.each(this._dataProvider5, function(testResult, testValue) {
+			assert.equal(this.stringCalculator.add(testValue), testResult, 'not equal');
+		}, this);
 	});
 
 	teardown(function() {

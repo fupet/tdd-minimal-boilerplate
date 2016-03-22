@@ -5,8 +5,8 @@
  */
 var StringCalculator = function() {
 	this._defaultDelimiter = /,|\n/;
-	this._delimiterTest = /^\D\n|^\[\D+\]\n/;
-	this._delimiterParser = /^(\D)\n|^\[(\D+)\]\n/;
+	this._delimiterTest = /^\D\n/;
+	this._delimiterParser = /^(\D)\n/;
 	this._mulitpleDelimiterTester = /\[(\D+?)\]/;
 	this._mulitpleDelimiterParser = /\[(\D+?)\]/g;
 	this._delimiter = this._defaultDelimiter;
@@ -34,7 +34,8 @@ StringCalculator.prototype.add = function(numbers) {
 
 StringCalculator.prototype._parseDelimiter = function(numbers) {
 	if (this._mulitpleDelimiterTester.test(numbers)) {
-		var match = null, delimiters = [];
+		var match = null,
+			delimiters = [];
 		while ((match = this._mulitpleDelimiterParser.exec(numbers)) != null) {
 			delimiters.push(escapeRegExp(match[1]));
 		}
@@ -42,14 +43,13 @@ StringCalculator.prototype._parseDelimiter = function(numbers) {
 		numbers = numbers.substr(numbers.indexOf('\n'));
 	}
 	else if (this._delimiterTest.test(numbers)) {
-		this._delimiter = numbers.match(this._delimiterParser);
-		this._delimiter = this._delimiter[1] || this._delimiter[2];
+		this._delimiter = numbers.match(this._delimiterParser)[1];
 		numbers = numbers.substr(numbers.indexOf('\n'));
 	}
 	return numbers;
 };
 
-function escapeRegExp(string){
+function escapeRegExp(string) {
 	return string.replace(/([.*+?^=!:${}()|\[\]\/\\])/g, "\\$1");
 }
 
